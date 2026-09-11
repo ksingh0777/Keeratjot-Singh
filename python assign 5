@@ -1,0 +1,200 @@
+
+Q1
+n = int(input("Enter Roll No.: "))
+L=[]
+m = n
+while m>0:
+  a = m%10
+  a*=10
+  L.append(a)
+  m//=10
+# print(L)
+
+L.append(100)
+# print(L) #Added element at the end of the list
+L.insert(5,200)
+# print(L) #Added element(200) at a specific index(5)
+
+L.remove(200)
+# print(L)
+L.pop()
+# print(L)
+
+L.sort()
+# print(L)
+L.sort(reverse=True)
+# print(L)
+
+print(L[:3])
+print(L[-3:])
+
+avg = sum(L)/len(L)
+L2 = [i for i in L if i>avg]
+print(L2)
+Q2
+n = int(input("Enter Roll No.: "))
+L=[]
+m = n
+while m>0:
+  a = m%10
+  a*=10
+  L.append(a)
+  m//=10
+# print(L)
+
+scores = tuple(L[:8])
+print(scores)
+
+high = max(scores)
+high_index = scores.index(high)
+low = min(scores)
+low_count = scores.count(low)
+
+print("Highest score:", high)
+print("Index of highest score:", high_index)
+print("Lowest score:", low)
+print("Number of times lowest score appears:", low_count)
+
+rev = scores[::-1]
+print("Reversed tuple as list:", list(rev))
+# Tuple cannot be reversed in place because tuples are immutable
+
+x = int(input("Enter a score: "))
+
+if x in scores:
+    print("First occurrence index:", scores.index(x))
+else:
+    print("Score not present")
+
+# scores[0] = 100
+# Tuple elements cannot be changed directly because tuples are immutable, unlike lists
+
+first, second, *remaining = scores
+print(first)
+print(second)
+print(remaining)
+Q3
+import random
+
+random.seed(1024170190)
+
+L = [random.randint(100,900) for i in range(100)]
+
+odd = [i for i in L if i%2 != 0]
+even = [i for i in L if i%2 == 0]
+
+print("Odd numbers:", odd)
+print("Count of odd numbers:", len(odd))
+
+print("Even numbers:", even)
+print("Count of even numbers:", len(even))
+
+prime = []
+
+for i in L:
+    flag = True
+    if i < 2:
+        flag = False
+    else:
+        for j in range(2, i):
+            if i%j == 0:
+                flag = False
+                break
+    if flag:
+        prime.append(i)
+
+prime2 = [i for i in L if i in prime]
+
+print("Prime numbers:", prime2)
+print("Count of prime numbers:", len(prime2))
+
+most = max(set(L), key=L.count)
+print("Most frequent number:", most)
+print("Frequency:", L.count(most))
+Q4
+n = int(input("Enter Roll No.: "))
+
+digits = []
+m = n
+
+while m > 0:
+    a = m % 10
+    digits.append(a)
+    m //= 10
+
+digits.reverse()
+digits = digits[:8]
+
+A = {i*7 for i in digits}
+B = {i*9 for i in digits}
+
+print("A:", A)
+print("B:", B)
+
+print("Union:", A.union(B))
+
+print("Intersection:", A.intersection(B))
+
+print("A - B:", A.difference(B))
+print("B - A:", B.difference(A))
+# difference() gives elements present in one set but not the other, while symmetric_difference() gives elements present in either set but not in both
+
+print("Symmetric Difference:", A.symmetric_difference(B))
+
+print("A is subset of B:", A.issubset(B))
+print("B is superset of A:", B.issuperset(A))
+
+x = int(input("Enter a value to remove from A: "))
+A.discard(x)
+print("A after discard:", A)
+# discard() does not give an error if the value is not present, unlike remove()
+Q5
+my_dict = {
+    "name": "Pratham Arora",
+    "roll_no": 1024170190,
+    "branch": "CSE",
+    "age": 20,
+    "city": "Ghaziabad"
+}
+
+city = my_dict.pop("city")
+my_dict["location"] = city
+# print(my_dict)
+
+my_dict["cgpa"] = 9.3
+# print(my_dict)
+
+my_dict["age"] += 1
+# print(my_dict)
+
+dict1 = my_dict.copy()
+dict1.pop("branch")
+# print(dict1)
+
+dict2 = my_dict.copy()
+del dict2["branch"]
+print(dict2)
+# pop() returns the deleted value, while del only deletes the key
+
+for key, value in my_dict.items():
+    print(key, "→", value)
+
+if "email" in my_dict:
+    print(my_dict["email"])
+else:
+    print("Email does not exist")
+
+friend_dict = {
+    "name": "XYZ",
+    "roll_no": 2024170190,
+    "branch": "CSE",
+    "age": 20,
+    "city": "Delhi"
+}
+
+merged_dict = {**my_dict, **friend_dict}
+print(merged_dict)
+# If both dictionaries have the same key, the value from the second dictionary wins
+
+string_dict = {key: value for key, value in my_dict.items() if isinstance(value, str)}
+print(string_dict)
